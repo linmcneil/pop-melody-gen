@@ -88,3 +88,13 @@ $PY = "C:\Users\lzq13\melody-rnn-lstm\.venv\Scripts\python.exe"
   paper-grade significance (HUMAN_EVAL targets N ≥ 20 raters).
 
 License: dataset Pop-K CC BY-NC; our code MIT. See CITATIONS.bib.
+
+## Acknowledgements
+
+This project started as a from-scratch reimplementation of Valerio Velardo's tutorial
+[musikalkemist/generating-melodies-with-rnn-lstm](https://github.com/musikalkemist/generating-melodies-with-rnn-lstm)
+(Generating Melodies with RNN-LSTM, MIT License, The Sound of AI). We then extended it with
+sampling improvements (temperature / top-p / repetition penalty), a dual-stream
+chord-conditioned LSTM, a 2-layer Transformer baseline, and our own pop-corpus pipeline
+(noisy MIDI loops -> clean monophonic lead + chord labels). Thanks to the original author
+and the community.

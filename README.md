@@ -1,6 +1,6 @@
 # Pop Melody Gen — 流行音乐主旋律自动生成(Chord-conditioned LSTM)
 
-一个从“复刻经典 LSTM 旋律生成教程”出发、最终收敛到 **现代流行主旋律 + 和弦可控生成** 的小型研究型项目。
+一个从“复刻经典 LSTM 旋律生成教程([musikalkemist/generating-melodies-with-rnn-lstm](https://github.com/musikalkemist/generating-melodies-with-rnn-lstm))”出发、最终收敛到 **现代流行主旋律 + 和弦可控生成** 的小型研究型项目。
 全部在 **Windows + CPU** 上可复现(单 epoch ~35–45s,整轮训练 15–20 分钟)。
 
 ![pipeline](docs/pipeline.png)
@@ -104,3 +104,12 @@ $PY = "C:\Users\lzq13\melody-rnn-lstm\.venv\Scripts\python.exe"
 - v1/v2 在德国民歌语料(KERN)上复刻并改进教程模型(naive → 温度+top-p+重复惩罚),验证了“采样器改进在换域后仍成立”;
 - v3 换到流行语料 Pop-K,自己写“整轨 loop → 干净主旋律 + 和弦标注”的数据管线,并按上面协议做正式对比。
 - 完整的研究主线、动机、困难与解决,见 `REPORT.md`;CV 用的一页亮点见 `HIGHLIGHTS.md`;英文版快速说明见 `README.en.md`。
+
+## 参考与致谢 (Acknowledgements)
+
+本项目以 Valerio Velardo 的 [musikalkemist/generating-melodies-with-rnn-lstm](https://github.com/musikalkemist/generating-melodies-with-rnn-lstm) 教程
+(Generating Melodies with RNN-LSTM, MIT License) 为学习起点：
+先完整复刻其数据与 LSTM 训练流程，
+再逐步加入采样改进、双流和弦条件模型与
+自建流行语料管线，最终形成本仓库 v3 主线。
+感谢原作者与 The Sound of AI 社区。

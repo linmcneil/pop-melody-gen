@@ -10,8 +10,7 @@ file_dataset/
 exp_cache/
 out/
 
-# --- model weights & training logs (results JSONs under experiments/ ARE committed) ---
-experiments/*.keras
+# --- heavy intermediates only (results JSON + *.keras models ARE committed) ---
 experiments/*.weights.h5
 experiments/log_*
 experiments/smoke_*

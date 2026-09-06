@@ -3,6 +3,8 @@
 一个从“复刻经典 LSTM 旋律生成教程”出发、最终收敛到 **现代流行主旋律 + 和弦可控生成** 的小型研究型项目。
 全部在 **Windows + CPU** 上可复现(单 epoch ~35–45s,整轮训练 15–20 分钟)。
 
+![pipeline](docs/pipeline.png)
+
 ## 这个项目解决什么
 
 - 目标:**给定和弦进行(例如 C–Am–F–G),让模型写一段流行主旋律**,或给一段开头让它接着写。
@@ -25,11 +27,39 @@ pop-melody-gen/
 ├─ eval_v3.py                     # 统一评测 → REPORT_TABLE.md + experiments/summary.json
 ├─ generate_v3.py                 # 采样(温度+top-p+重复惩罚)→ MIDI + 轻量 WAV
 ├─ human_eval/                    # A/B/C 人类听感材料生成与分析(Friedman/Wilcoxon)
-├─ experiments/                   # *.keras + *_results.json(模型与指标)
+├─ experiments/                   # 预训练模型 *.keras + *_results.json(已随仓库发布)
+├─ docs/                          # 流程图 pipeline.png / model_arch.png(用 scripts/make_figs.py 重绘)
 ├─ REPORT_TABLE.md                # 最终数字表
 ├─ v3-demo-*.mid / *.wav          # 可直接试听的成品(cond 三套进行 + base 对照)
 └─ HIGHLIGHTS.md / REPORT.md      # 一页亮点 / 完整研究主线报告
 ```
+
+
+## 预训练模型(仓库内直接可用)
+
+五个训练好的模型已随仓库提交到 `experiments/`,可直接加载评测/生成,不必重训:
+
+| 文件 | 说明 | test NLL |
+|---|---|---|
+| `xf_s1.keras` | Transformer-2L(vanilla CE) | 0.783 |
+| `base_s1.keras` | 单流 LSTM(vanilla CE) | 0.809 |
+| `cond_s1.keras` | 双流 LSTM+和弦(vanilla CE) | 0.824 |
+| `base_r1.keras` | 单流 LSTM(音符重平衡 6x) | 0.940 |
+| `cond_r1.keras` | 双流 LSTM+和弦(音符重平衡 6x,主力 demo 模型) | 0.943 |
+
+> 注: vanilla CE 模型 NLL 更低但采样“几乎不出新音”;重平衡模型(带 `_r1`)虽然无权重
+> NLL 略高,才是能实际“写旋律”的版本。直接出 demo:
+
+```powershell
+& $PY generate_v3.py --base-model base_r1 --cond-model cond_r1 --temperature 0.7
+```
+
+生成/评测脚本(`generate_v3.py`、`eval_v3.py`、`analyze.py`)默认会读取这些文件;
+Transformer 由 `models_v3.TransformerLM` 反序列化(脚本内已处理)。
+
+双流模型的输入结构示意:
+
+![model_arch](docs/model_arch.png)
 
 ## 快速复现(v3 主线)
 

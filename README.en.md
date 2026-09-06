@@ -4,6 +4,8 @@ A small but rigorous symbolic-music-generation study, fully reproducible on CPU 
 from 305k noisy Pop-K MIDI loops to clean monophonic lead melodies, then LSTM/Transformer
 next-token models with an honest by-song split and a class-rebalanced objective.
 
+![pipeline](docs/pipeline.png)
+
 ## Problem & idea
 - Task: continue (or write from a motif) a **pop lead melody under a user-chosen chord
   progression** (e.g., C–Am–F–G).
@@ -36,6 +38,33 @@ next-token models with an honest by-song split and a class-rebalanced objective.
   wider range (9.9 vs 6.2 semitones) and richer pitch entropy (2.0 vs 1.6 bits).
 - Rendering: `v3-demo-cond-C-Am-F-G.wav/.mid` etc. give three progressions; `v3-demo-base` is
   the no-chord control.
+
+
+## Pretrained models (in this repo)
+
+No need to retrain — the five released checkpoints are in `experiments/`:
+
+| file | notes | test NLL |
+|---|---|---|
+| `xf_s1.keras` | 2-layer Transformer (vanilla CE) | 0.783 |
+| `base_s1.keras` | single-stream LSTM (vanilla CE) | 0.809 |
+| `cond_s1.keras` | dual-stream LSTM + chords (vanilla CE) | 0.824 |
+| `base_r1.keras` | single-stream LSTM (note-reweighted 6x) | 0.940 |
+| `cond_r1.keras` | dual-stream LSTM + chords (note-reweighted 6x, main demo model) | 0.943 |
+
+> Vanilla-CE models score a lower NLL but sampling barely attacks new notes; the reweighted
+> `_r1` models are the ones that actually compose. Render demos directly:
+
+```powershell
+& $PY generate_v3.py --base-model base_r1 --cond-model cond_r1 --temperature 0.7
+```
+
+`generate_v3.py` / `eval_v3.py` / `analyze.py` read these files by default; the Transformer is
+deserialized through `models_v3.TransformerLM`.
+
+Dual-stream architecture:
+
+![model_arch](docs/model_arch.png)
 
 ## Reproduce
 ```powershell

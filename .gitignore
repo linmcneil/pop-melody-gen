@@ -1,0 +1,29 @@
+# --- raw corpus (CC BY-NC, ~54 MB gz / ~700 MB tar) — download via scripts/download_dataset.py ---
+data/
+*.tar
+*.tar.gz
+
+# --- generated/derived text corpora (regenerate with preprocess*.py) ---
+dataset/
+dataset_v3/
+file_dataset/
+exp_cache/
+out/
+
+# --- model weights & training logs (results JSONs under experiments/ ARE committed) ---
+experiments/*.keras
+experiments/*.weights.h5
+experiments/log_*
+experiments/smoke_*
+
+# --- python ---
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# --- os / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

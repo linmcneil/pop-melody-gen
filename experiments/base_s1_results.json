@@ -1,0 +1,12 @@
+{
+  "name": "base_s1",
+  "kind": "base",
+  "seed": 1,
+  "best_epoch": 30,
+  "best_val_loss": 0.8270629048347473,
+  "test_loss": 0.8089189529418945,
+  "test_acc": 0.7519999742507935,
+  "n_train_windows_per_epoch": 20000,
+  "n_val_windows": 2000,
+  "n_test_windows": 4000
+}

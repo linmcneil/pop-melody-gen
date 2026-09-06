@@ -1,0 +1,14 @@
+{
+  "name": "xf_s1",
+  "kind": "xformer",
+  "seed": 1,
+  "best_epoch": 29,
+  "best_val_loss": 0.7935230731964111,
+  "test_loss": 0.7830108404159546,
+  "test_acc": 0.7544999718666077,
+  "n_train_windows_per_epoch": 20000,
+  "note_weight": 1.0,
+  "epochs_used": 29,
+  "n_val_windows": 2000,
+  "n_test_windows": 4000
+}

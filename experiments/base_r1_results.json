@@ -1,0 +1,14 @@
+{
+  "name": "base_r1",
+  "kind": "base",
+  "seed": 1,
+  "best_epoch": 30,
+  "best_val_loss": 3.443732261657715,
+  "test_loss": 0.9400132894515991,
+  "test_acc": 0.659500002861023,
+  "n_train_windows_per_epoch": 20000,
+  "note_weight": 6.0,
+  "epochs_used": 30,
+  "n_val_windows": 2000,
+  "n_test_windows": 4000
+}

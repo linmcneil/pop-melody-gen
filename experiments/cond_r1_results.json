@@ -1,0 +1,14 @@
+{
+  "name": "cond_r1",
+  "kind": "cond",
+  "seed": 1,
+  "best_epoch": 30,
+  "best_val_loss": 3.3744499683380127,
+  "test_loss": 0.9426044225692749,
+  "test_acc": 0.6607499718666077,
+  "n_train_windows_per_epoch": 20000,
+  "note_weight": 6.0,
+  "epochs_used": 30,
+  "n_val_windows": 2000,
+  "n_test_windows": 4000
+}

@@ -167,6 +167,13 @@ MIDI 语料**,而不是用音频做端到端。这也是为什么候选锁定 PO
 
 ## 8. 复现步骤
 
+> Historical note: the v1/v2 scripts and files named in this section
+> (preprocess.py, train.py, generate.py, gen_more.py, model.keras,
+> mapping.json, pop-mel-*.mid) documented the earlier pipeline and are
+> NOT shipped in the cleaned repo; current v3 reproduction lives in
+> README "quick reproduce v3".
+
+
 ```powershell
 # 环境(复用 v1/v2 venv, 内含 TF/Keras/music21/mido)
 & "C:\Users\lzq13\melody-rnn-lstm\.venv\Scripts\python.exe" preprocess.py
